@@ -4,7 +4,7 @@
 
 services:
   frontend:
-    build: ./frontend
+    image: app-frontend
     container_name: frontend
     depends_on:
       - backend
@@ -15,7 +15,7 @@ services:
       - app-network
 
   backend:
-    build: ./backend
+    image: app-backend
     container_name: backend
     depends_on:
       - database
