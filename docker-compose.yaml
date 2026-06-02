@@ -1,0 +1,39 @@
+# frontend
+# backend
+# database
+
+services:
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    depends_on:
+      - backend
+      - database
+    ports:
+      - 3001:80
+    networks:
+      - app-network
+
+  backend:
+    build: ./backend
+    container_name: backend
+    depends_on:
+      - database
+    ports:
+      - 3000:3000
+    networks:
+      - app-network
+
+  database:
+    image: mongo:noble
+    container_name: database
+    volumes:
+      - app-data:/data/db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+
+volumes:
+  app-data:
